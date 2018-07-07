@@ -5,8 +5,8 @@ require('vendor/autoload.php');
 class Product
 {
 
-    protected $name;
-    protected $price;
+    public $name;
+    public $price;
 
     public function __construct($name, $price)
     {
@@ -29,16 +29,9 @@ $productData = [
     new Product('Tv', 1220),
 ];
 
-function test($items, $func)
-{
-    foreach ($items as $item) {
-         $func($item);
-    }
-}
+$productNames = array_map(function($product){
+    return $product->name;
+}, $productData);
 
-$data = test($productData, function($product) {
-   return $product->delete();
-});
-
-dd(test());
+dd($productNames);
 
