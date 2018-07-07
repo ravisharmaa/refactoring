@@ -1,0 +1,7 @@
+{
+    
+    "require": {
+        "tightenco/collect": "^5.6",
+        "larapack/dd": "^1.1"
+    }
+}
