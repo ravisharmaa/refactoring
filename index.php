@@ -7,35 +7,42 @@ class Product
 
     public $name;
     public $price;
-    public $outOfStock;
+    public $email;
+   
 
-    public function __construct(String $name, int $price, bool $outOfStock)
+    public function __construct(String $name, int $price, String $email )
     {
         $this->name = $name;
         $this->price = $price;
-        $this->outOfStock = $outOfStock;
+        $this->email = $email;
+       
     }
 
-    public function delete()
-    {
-        return 'helo world';
-    }
+   
 }
 
 
 
 $productData = [
-    new Product('Radio', 122,true),
-    new Product('Walkman', 150, false),
-    new Product('Watch', 200, true),
-    new Product('Mobile', 500, false),
-    new Product('Tv', 1220,true),
+    new Product('Radio', 122,'jag@gmail.com'),
+    new Product('Walkman', 150, 'ravi@gmail.com'),
+    new Product('Watch', 200, 'bastola@ymail.com'),
+    new Product('Mobile', 500,'test@xyz.com' ),
+    new Product('Tv', 1220,'test@email.com')
 ];
 
-$outOfStock = array_filter($productData, function($product) {
-    return !$product->outOfStock; 
-});
+//Reduce takes items from array and reduces it to a single value
+$customer = array_reduce($productData, function ($customer, $product){
+    return $customer . $product->email. ';';
+},'');
 
 
-dd($outOfStock);
+echo $customer;
+
+$productPrice = array_reduce($productData,function ($productPrice, $product) {
+    return $productPrice + $product->price;
+},0);
+
+echo $productPrice;
+
 
