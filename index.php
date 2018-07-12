@@ -37,12 +37,40 @@ $customer = array_reduce($productData, function ($customer, $product){
 },'');
 
 
-echo $customer;
-
 $productPrice = array_reduce($productData,function ($productPrice, $product) {
     return $productPrice + $product->price;
 },0);
 
-echo $productPrice;
+echo $productPrice; echo "<br>";
+//echo $customer;
+
+function sum($items, $callback)
+{
+    return array_reduce($items, function($total, $item) use ($callback) {
+        return $total + $callback($item);
+    },0);
+}
 
 
+
+
+$totalPrice = sum($productData, function($product) {
+    return $product->price;
+});
+
+print $totalPrice;
+
+function names($names, $callback)
+{
+    
+    return array_reduce($names, function($customer, $name) use ($callback) {
+        return $customer. $callback($name) .';';
+    },'');
+}
+
+$emails = names($productData, function($customer) {
+    return $customer->email;
+});
+
+
+print $emails;
