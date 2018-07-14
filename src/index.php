@@ -1,6 +1,5 @@
 <?php
-
-require('vendor/autoload.php');
+namespace App;
 
 class Product
 {
@@ -41,7 +40,7 @@ $productPrice = array_reduce($productData,function ($productPrice, $product) {
     return $productPrice + $product->price;
 },0);
 
-echo $productPrice; echo "<br>";
+//echo $productPrice;
 //echo $customer;
 
 function sum($items, $callback)
@@ -58,11 +57,10 @@ $totalPrice = sum($productData, function($product) {
     return $product->price;
 });
 
-print $totalPrice;
+//print $totalPrice;
 
 function names($names, $callback)
 {
-    
     return array_reduce($names, function($customer, $name) use ($callback) {
         return $customer. $callback($name) .';';
     },'');
@@ -74,3 +72,4 @@ $emails = names($productData, function($customer) {
 
 
 print $emails;
+
