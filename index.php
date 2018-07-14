@@ -37,5 +37,5 @@ $outOfStock = array_filter($productData, function($product) {
 });
 
 
-dd($outOfStock);
+var_dump($outOfStock);
 
