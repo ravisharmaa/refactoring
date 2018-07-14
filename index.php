@@ -7,11 +7,13 @@ class Product
 
     public $name;
     public $price;
+    public $outOfStock;
 
-    public function __construct($name, $price)
+    public function __construct($name, $price, $outOfStock)
     {
         $this->name = $name;
         $this->price = $price;
+        $this->outOfStock = $outOfStock;
     }
 
     public function delete()
@@ -22,15 +24,15 @@ class Product
 
 
 $productData = [
-    new Product('Radio', 122),
-    new Product('Walkman', 150),
-    new Product('Watch', 200),
-    new Product('Mobile', 500),
-    new Product('Tv', 1220),
+    new Product('Radio', 122,true),
+    new Product('Walkman', 150, false),
+    new Product('Watch', 200, false),
+    new Product('Mobile', 500, false),
+    new Product('Tv', 1220, false),
 ];
 
 $productNames = array_map(function($product){
-    return $product->name;
+    return $product->outOfStock;
 }, $productData);
 
 dd($productNames);
