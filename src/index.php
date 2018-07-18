@@ -1,6 +1,6 @@
 <?php
 namespace App;
-
+use Collections\Collection;
 class Product
 {
 
@@ -27,49 +27,34 @@ $productData = [
     new Product('Walkman', 150, 'ravi@gmail.com'),
     new Product('Watch', 200, 'bastola@ymail.com'),
     new Product('Mobile', 500,'test@xyz.com' ),
-    new Product('Tv', 1220,'test@email.com')
+    new Product('Tv', 1220,'')
 ];
 
-//Reduce takes items from array and reduces it to a single value
-$customer = array_reduce($productData, function ($customer, $product){
-    return $customer . $product->email. ';';
-},'');
 
 
-$productPrice = array_reduce($productData,function ($productPrice, $product) {
-    return $productPrice + $product->price;
-},0);
-
-//echo $productPrice;
-//echo $customer;
-
-function sum($items, $callback)
+/*function getEmails($productData)
 {
-    return array_reduce($items, function($total, $item) use ($callback) {
-        return $total + $callback($item);
-    },0);
+    $userWithEmails = array_filter($productData, function($product) {
+        return $product->email != null;
+    });
+
+    return array_map(function($user) {
+        return $user->email;
+    }, $userWithEmails);
+
+
+}*/
+
+//instead of this we can now implement the collection class
+
+function getEmail($productData)
+{
+    return (new Collection($productData))->filter(function ($product){
+      return $product->email != null;
+    })->map(function ($user) {
+       return $user->email;
+    })->toArray();
 }
 
 
-
-
-$totalPrice = sum($productData, function($product) {
-    return $product->price;
-});
-
-//print $totalPrice;
-
-function names($names, $callback)
-{
-    return array_reduce($names, function($customer, $name) use ($callback) {
-        return $customer. $callback($name) .';';
-    },'');
-}
-
-$emails = names($productData, function($customer) {
-    return $customer->email;
-});
-
-
-print $emails;
-
+dd(getEmail($productData));
