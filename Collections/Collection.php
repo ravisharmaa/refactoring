@@ -20,6 +20,9 @@ class Collection
 
     public function map($callback)
     {
+        //dump($callback);
+        //dump($this);
+        dump(array_map($callback, $this->items));
         return new static(array_map($callback,$this->items));
     }
 

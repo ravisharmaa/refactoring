@@ -1,6 +1,7 @@
 <?php
 namespace App;
 use Collections\Collection;
+use Collections\Work\Work;
 class Product
 {
 
@@ -47,7 +48,7 @@ $productData = [
 
 //instead of this we can now implement the collection class
 
-function getEmail($productData)
+/*function getEmail($productData)
 {
     return (new Collection($productData))->filter(function ($product){
       return $product->email != null;
@@ -57,4 +58,6 @@ function getEmail($productData)
 }
 
 
-dd(getEmail($productData));
+dump(getEmail($productData));*/
+
+dump((new Work(['nikesh','nischal','sahi']))->merge()->pop());
